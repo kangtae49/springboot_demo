@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.sample_dev.mapper.SampleMapperDev">
+	<select id="selectSampleListDev" parameterType="com.example.demo.sample.vo.SampleVO" resultType="com.example.demo.sample.vo.SampleVO">
+		SELECT 'NM1' AS NM, 1.0 VAL
+		UNION ALL
+		SELECT 'NM2' AS NM, 2.0 VAL
+	</select>
+	
+	<insert id="insertSampleDev" parameterType="com.example.demo.auth.vo.LoginVO" >
+		INSERT INTO DEMO_USER(USER_NM, PASSWD) VALUES(#{username}, #{password});
+	</insert>
+	
+	
+</mapper>

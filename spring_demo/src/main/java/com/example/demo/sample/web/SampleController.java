@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.auth.vo.LoginVO;
 import com.example.demo.sample.service.SampleService;
 import com.example.demo.sample.vo.SampleVO;
 
@@ -24,8 +25,46 @@ public class SampleController {
 		
 		System.out.println("cnt:" + list.size());
 		
-		return "/sampleList";
+		return "/index";
 	}
 
+	@RequestMapping("/insertSample")
+	public String insertSample() throws Exception {
+		
+		LoginVO param = new LoginVO();
+		param.setUsername("hello");
+		param.setPassword("hello");
+		
+		sampleService.insertSample(param);
+		
+		
+		return "/index";
+	}
+	
+	@RequestMapping("/insertSampleDev")
+	public String insertSampleDev() throws Exception {
+		
+		LoginVO param = new LoginVO();
+		param.setUsername("hello");
+		param.setPassword("hello");
+		
+		sampleService.insertSampleDev(param);
+		
+		
+		return "/index";
+	}
+	
+	@RequestMapping("/insertSampleChained")
+	public String insertSampleChained() throws Exception {
+		
+		LoginVO param = new LoginVO();
+		param.setUsername("hello");
+		param.setPassword("hello");
+		sampleService.insertSampleChained(param);
+		
+		
+		
+		return "/index";
+	}
 
 }

@@ -6,4 +6,11 @@
 		UNION ALL
 		SELECT 'NM2' AS NM, 2.0 VAL
 	</select>
+	
+	<insert id="insertSample" parameterType="com.example.demo.auth.vo.LoginVO" >
+		INSERT INTO DEMO_USER(USER_NM, PASSWD) VALUES(#{username}, #{password});
+	</insert>
+	
+	
+	
 </mapper>

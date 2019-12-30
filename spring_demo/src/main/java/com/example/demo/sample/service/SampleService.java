@@ -4,18 +4,53 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.auth.vo.LoginVO;
 import com.example.demo.sample.mapper.SampleMapper;
 import com.example.demo.sample.vo.SampleVO;
+import com.example.demo.sample_dev.mapper.SampleMapperDev;
 
 @Service
 public class SampleService {
 	
 	@Autowired
 	SampleMapper sampleMapper;
+
+	@Autowired
+	SampleMapperDev sampleMapperDev;
 	
 	public List<SampleVO> selectSampleList(SampleVO param) throws Exception{
 		return sampleMapper.selectSampleList(param);
 	}
+	
+	
+	@Transactional(transactionManager="transactionManager", rollbackFor = Exception.class)
+	public void insertSample(LoginVO param) throws Exception {
+		sampleMapper.insertSample(param);
+//		if(true) {
+//			throw new Exception("transaction test");
+//		}
+		sampleMapper.insertSample(param);
+	}
 
+	@Transactional(transactionManager="transactionManagerDev", rollbackFor = Exception.class)
+	public void insertSampleDev(LoginVO param) throws Exception {
+		sampleMapperDev.insertSampleDev(param);
+//		if(true) {
+//			throw new Exception("transaction test");
+//		}
+		sampleMapperDev.insertSampleDev(param);
+	}
+
+	@Transactional(transactionManager="chainedTransactionManager", rollbackFor = Exception.class)
+	public void insertSampleChained(LoginVO param) throws Exception {
+		sampleMapperDev.insertSampleDev(param);
+//		if(true) {
+//			throw new Exception("transaction chained test");
+//		}
+		sampleMapper.insertSample(param);
+	}
+	
+	
 }
