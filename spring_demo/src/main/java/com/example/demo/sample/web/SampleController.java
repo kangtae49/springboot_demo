@@ -66,5 +66,10 @@ public class SampleController {
 		
 		return "/index";
 	}
+	
+	@RequestMapping("/restTest")
+	public String restTest() throws Exception {
+		return "/restTest";
+	}
 
 }

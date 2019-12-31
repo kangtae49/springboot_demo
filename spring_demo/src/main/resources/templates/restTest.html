@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script src="/resources/js/jquery-3.4.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	var param = {
+		nm: "hello",
+		val: 1.0,
+	};
+	
+	$.ajax({
+		url: '/sample/rest',
+		data: JSON.stringify(param),
+		type: 'POST',
+		dataType: 'json',
+		contentType: 'application/json',
+		success: function(result){
+			alert(JSON.stringify(result));
+		}
+	});
+});
+
+</script>
+</head>
+<body>
+
+index
+
+</body>
+</html>
