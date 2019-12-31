@@ -7,28 +7,37 @@
 <script src="/resources/js/jquery-3.4.1.min.js"></script>
 <script>
 $(document).ready(function(){
-	var param = {
-		nm: "hello",
-		val: 1.0,
-	};
 	
-	$.ajax({
-		url: '/sample/rest',
-		data: JSON.stringify(param),
-		type: 'POST',
-		dataType: 'json',
-		contentType: 'application/json',
-		success: function(result){
-			alert(JSON.stringify(result));
-		}
+	$('#callAjax').on('click', function(){
+		var param = {
+				nm: $('#nm').val(),
+				val: 1.0,
+			};
+			
+			$.ajax({
+				url: '/sample/rest',
+				data: JSON.stringify(param),
+				type: 'POST',
+				dataType: 'json',
+				contentType: 'application/json',
+				success: function(result){
+					alert(JSON.stringify(result));
+				}
+			});
 	});
+	
 });
 
 </script>
 </head>
 <body>
 
-index
+<form action="/sample/formTest" method="post">
+	<input id="nm" type="text" name="nm" value="<script>alert('hi');</script>" />
+	<button type="submit" >Submit</button>
+</form>
+
+<div id="callAjax" >Ajax</div>
 
 </body>
 </html>

@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.auth.vo.LoginVO;
@@ -69,6 +71,13 @@ public class SampleController {
 	
 	@RequestMapping("/restTest")
 	public String restTest() throws Exception {
+		return "/restTest";
+	}
+
+	@PostMapping("/formTest")
+	public String formTest(@ModelAttribute SampleVO param) throws Exception {
+		System.out.println("param:" + param.getNm());
+		
 		return "/restTest";
 	}
 
