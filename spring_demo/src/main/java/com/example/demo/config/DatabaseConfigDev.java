@@ -1,5 +1,7 @@
 package com.example.demo.config;
 
+import java.util.Properties;
+
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -45,9 +47,11 @@ public class DatabaseConfigDev {
 	@Bean(name="sqlSessionFactoryDev")
 	@Qualifier("sqlSessionFactoryDev")
 	public SqlSessionFactory sqlSessionFactory(@Qualifier("dataSourceDev") DataSource dataSource) throws Exception {
+
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 		sqlSessionFactoryBean.setDataSource(dataSource);
 		sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:mapper/**/*MapperDev.xml"));
+		sqlSessionFactoryBean.setConfigLocation(applicationContext.getResource("classpath:mybatis-config.xml"));
 		return sqlSessionFactoryBean.getObject();
 	}
 	

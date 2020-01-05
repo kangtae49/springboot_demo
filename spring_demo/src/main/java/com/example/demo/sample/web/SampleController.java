@@ -1,9 +1,12 @@
 package com.example.demo.sample.web;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +22,9 @@ public class SampleController {
 	@Autowired
 	SampleService sampleService;
 	
+	@Autowired
+	SchedulerFactoryBean schedulerFactoryBean;
+	
 	@RequestMapping("/selectSampleList")
 	public String selectSampleList() throws Exception {
 		
@@ -26,6 +32,19 @@ public class SampleController {
 		List<SampleVO> list = sampleService.selectSampleList(param);
 		
 		System.out.println("cnt:" + list.size());
+		System.out.println("cnt:" + list.get(0).getUserNm());
+		
+		return "/index";
+	}
+
+	@RequestMapping("/selectSample2List")
+	public String selectSample2List() throws Exception {
+		
+		SampleVO param = new SampleVO();
+		List<Map<?,?>> list = sampleService.selectSample2List(param);
+		
+		System.out.println("cnt:" + list.size());
+		System.out.println("user_nm:" + list.get(0).get("USER_NM"));
 		
 		return "/index";
 	}
@@ -79,6 +98,13 @@ public class SampleController {
 		System.out.println("param:" + param.getNm());
 		
 		return "/restTest";
+	}
+	
+	@GetMapping("/schdTest")
+	public String schdTest() throws Exception {
+		System.out.println("isAutoStartup:" + schedulerFactoryBean.isAutoStartup());
+		System.out.println("isStarted:" + schedulerFactoryBean.getScheduler().isStarted());
+		return "/index";
 	}
 
 }

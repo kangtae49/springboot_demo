@@ -7,5 +7,6 @@ import lombok.Setter;
 @Setter
 public class SampleVO {
 	String nm;
+	String userNm;
 	double val;
 }

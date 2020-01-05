@@ -1,6 +1,7 @@
 package com.example.demo.sample.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,9 @@ public class SampleService {
 		return sampleMapper.selectSampleList(param);
 	}
 	
+	public List<Map<?,?>> selectSample2List(SampleVO param) throws Exception{
+		return sampleMapper.selectSample2List(param);
+	}
 	
 	@Transactional(transactionManager="transactionManager", rollbackFor = Exception.class)
 	public void insertSample(LoginVO param) throws Exception {
