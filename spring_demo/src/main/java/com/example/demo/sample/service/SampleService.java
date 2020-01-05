@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,10 @@ public class SampleService {
 	@Autowired
 	SampleMapperDev sampleMapperDev;
 	
+	public void cronTest() throws Exception{
+		System.out.println("cronTest");
+	}
+
 	public List<SampleVO> selectSampleList(SampleVO param) throws Exception{
 		return sampleMapper.selectSampleList(param);
 	}
