@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 
+import org.jasypt.encryption.StringEncryptor;
 import org.quartz.CronScheduleBuilder;
 import org.quartz.JobBuilder;
 import org.quartz.JobDataMap;
@@ -33,6 +34,10 @@ import schd.ScheduledJob;
 @Controller
 @RequestMapping("/sample")
 public class SampleController {
+	
+	
+	@Autowired
+	StringEncryptor stringEncryptor;
 	
 	@Autowired
 	SampleService sampleService;
@@ -108,6 +113,9 @@ public class SampleController {
 	
 	@RequestMapping("/restTest")
 	public String restTest() throws Exception {
+		String enc = stringEncryptor.encrypt("spring_demo");
+		System.out.println("enc:" + enc);
+		
 		return "/restTest";
 	}
 
