@@ -170,6 +170,19 @@ public class SampleController {
 		return "/index";
 	}
 	
-	
+	@GetMapping("/cacheTest")
+	public String cacheTest() throws Exception {
+		SampleVO param = new SampleVO();
+		String strDt = sampleService.cacheTest(param);
+		System.out.println("strDt:" + strDt);
+		return "/index";
+	}
+
+	@GetMapping("/cacheClear")
+	public String cacheClear() throws Exception {
+		sampleService.cacheClear();
+		return "/index";
+	}
+
 
 }

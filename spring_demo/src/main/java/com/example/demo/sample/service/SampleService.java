@@ -1,9 +1,13 @@
 package com.example.demo.sample.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,6 +16,11 @@ import com.example.demo.sample.mapper.SampleMapper;
 import com.example.demo.sample.vo.SampleVO;
 import com.example.demo.sample_dev.mapper.SampleMapperDev;
 
+import lombok.extern.slf4j.Slf4j;
+
+
+
+@Slf4j
 @Service
 public class SampleService {
 	
@@ -60,5 +69,15 @@ public class SampleService {
 		sampleMapper.insertSample(param);
 	}
 	
-	
+	@Cacheable(value = "menu", keyGenerator = "customKeyGenerator")
+	public String cacheTest(SampleVO param) throws Exception {
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return fmt.format(new Date());
+	}
+
+	@CacheEvict(value = "menu", allEntries = true)
+	public void cacheClear() throws Exception {
+		log.info("Clear Cache");
+	}
+
 }
