@@ -7,12 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.auth.vo.LoginVO;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
+@Slf4j
 public class HomeController {
 
 
 	@RequestMapping("/")
 	public String index() {
+		log.debug("Controller index");
 		return "/index";
 	}
 	

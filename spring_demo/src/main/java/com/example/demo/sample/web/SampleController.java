@@ -27,7 +27,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.auth.vo.LoginVO;
 import com.example.demo.sample.service.SampleService;
 import com.example.demo.sample.vo.SampleVO;
-import com.mchange.v2.lang.reflect.MethodUtils;
 
 import schd.ScheduledJob;
 
@@ -52,6 +51,7 @@ public class SampleController {
 	public String selectSampleList() throws Exception {
 		
 		SampleVO param = new SampleVO();
+		param.setUserNm("USER1");
 		List<SampleVO> list = sampleService.selectSampleList(param);
 		
 		System.out.println("cnt:" + list.size());
@@ -140,7 +140,7 @@ public class SampleController {
 		String methodName = "cronTest";
 		
 		Method method = BeanUtils.findDeclaredMethod(service.getClass(), methodName);
-		SampleVO param = new SampleVO();
+		// SampleVO param = new SampleVO();
 		
 		jobDataMap.put("service", service);
 		jobDataMap.put("method", method);

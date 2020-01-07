@@ -2,9 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.sample.mapper.SampleMapper">
 	<select id="selectSampleList" parameterType="com.example.demo.sample.vo.SampleVO" resultType="com.example.demo.sample.vo.SampleVO">
-		SELECT 'NM1' AS NM, 1.0 VAL, 'USER1' USER_NM
-		UNION ALL
-		SELECT 'NM2' AS NM, 2.0 VAL, 'USER2' USER_NM
+		SELECT * FROM (
+			SELECT 'NM1' AS NM, 1.0 VAL, 'USER1' USER_NM
+			UNION ALL
+			SELECT 'NM2' AS NM, 2.0 VAL, 'USER2' USER_NM
+		) A
+		WHERE A.USER_NM = #{userNm}
 	</select>
 
 	<select id="selectSample2List" parameterType="com.example.demo.sample.vo.SampleVO" resultType="map">

@@ -1,7 +1,5 @@
 package com.example.demo.config;
 
-import java.util.Properties;
-
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
