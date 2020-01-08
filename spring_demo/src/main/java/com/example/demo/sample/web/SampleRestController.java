@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.config.RestAuthenticationEntryPoint;
 import com.example.demo.sample.service.SampleService;
 import com.example.demo.sample.vo.SampleVO;
 
 @RestController
 @RequestMapping("/sample")
-public class SampleRestController {
+public class SampleRestController{
 	
 	@Autowired
 	SampleService sampleService;

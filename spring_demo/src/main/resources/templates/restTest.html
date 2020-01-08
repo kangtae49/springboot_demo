@@ -7,24 +7,30 @@
 <title>Insert title here</title>
 
 <script th:src="@{/resources/js/jquery-3.4.1.min.js}"></script>
-<script>
+<script th:inline="javascript">
 $(document).ready(function(){
 	
 	$('#callAjax').on('click', function(){
 		var param = {
 				nm: $('#nm').val(),
+				userNm: 'USER1',
 				val: 1.0,
 			};
-			
 			$.ajax({
-				url: '/sample/rest',
+				url: [[@{/sample/rest}]],
 				data: JSON.stringify(param),
 				type: 'POST',
 				dataType: 'json',
 				contentType: 'application/json',
 				success: function(result){
 					alert(JSON.stringify(result));
+				},
+				error: function(jqXHR, textStatus, errorThrown){
+					alert("jqXHR.status:" + jqXHR.status);
+					alert("textStatus:" + textStatus);
+					alert("errorThrown:" + errorThrown);
 				}
+				
 			});
 	});
 	

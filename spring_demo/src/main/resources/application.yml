@@ -1,1 +1,1 @@
-server:  servlet:    context-path: /spring:  profiles:    active: default
+server:  servlet:    context-path: /demospring:  profiles:    active: default

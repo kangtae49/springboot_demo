@@ -20,7 +20,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	UserService userService;
 	
-	
+	@Autowired
+	private RestAuthenticationEntryPoint authenticationEntryPoint;	
 	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
@@ -32,6 +33,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 		.csrf().disable()
 		.cors()
+			.and()
+		.exceptionHandling()
+			.authenticationEntryPoint(authenticationEntryPoint)
 			.and()
 		.authorizeRequests()
 			.anyRequest()
