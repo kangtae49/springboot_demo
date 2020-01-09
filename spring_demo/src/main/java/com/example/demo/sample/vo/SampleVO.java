@@ -9,4 +9,6 @@ public class SampleVO {
 	String nm;
 	String userNm;
 	double val;
+	int intVal;
+	String strVal;
 }

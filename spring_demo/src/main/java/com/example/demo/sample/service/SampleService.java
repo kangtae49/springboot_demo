@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.ResultHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -78,6 +79,11 @@ public class SampleService {
 	@CacheEvict(value = "menu", allEntries = true)
 	public void cacheClear() throws Exception {
 		log.info("Clear Cache");
+	}
+	
+	
+	public void excelDownload(SampleVO param, ResultHandler<?> handler) throws Exception {
+		sampleMapper.excelDownload(param, handler);
 	}
 
 }

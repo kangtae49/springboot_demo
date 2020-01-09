@@ -1,9 +1,11 @@
 package com.example.demo.sample.web;
 
 import java.lang.reflect.Method;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.ResultHandler;
 import org.jasypt.encryption.StringEncryptor;
 import org.quartz.CronScheduleBuilder;
 import org.quartz.JobBuilder;
@@ -23,8 +25,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.auth.vo.LoginVO;
+import com.example.demo.common.view.ExcelDownloadView;
+import com.example.demo.common.view.IReady;
+import com.example.demo.common.vo.ExcelInfoVO;
 import com.example.demo.sample.service.SampleService;
 import com.example.demo.sample.vo.SampleVO;
 
@@ -184,5 +190,31 @@ public class SampleController {
 		return "/index";
 	}
 
+	@GetMapping("/fileDownload")
+	public String fileDownload() throws Exception {
+		return "/fileDownload";
+	}
 
+	@PostMapping("/excelDownload")
+	public ModelAndView excelDownload(@ModelAttribute SampleVO param) throws Exception {
+//		SampleVO param = new SampleVO();
+		ExcelInfoVO excelInfo = new ExcelInfoVO();
+		excelInfo.setSaveFilename("엑셀다운로드");
+		excelInfo.setSheetName("sheet");
+		excelInfo.setReadyProcess((handler) -> {
+				sampleService.excelDownload(param, handler);
+		});
+		excelInfo.setRowProcess((obj, idxRow) ->{
+			SampleVO vo = (SampleVO)obj;
+			Map<String, Object> map = new LinkedHashMap<>();
+			
+			map.put("No", (idxRow+1));
+			map.put("Val", vo.getIntVal());
+			map.put("Str", vo.getStrVal());
+			return map;
+		});
+		
+		return new ModelAndView(new ExcelDownloadView(excelInfo));
+	}
+	
 }

@@ -20,6 +20,44 @@
 		INSERT INTO DEMO_USER(USER_NM, PASSWD) VALUES(#{username}, #{password});
 	</insert>
 	
+	<select id="excelDownload" parameterType="com.example.demo.sample.vo.SampleVO" resultType="com.example.demo.sample.vo.SampleVO">
+		with a as (
+		select 0 n
+		union all
+		select 1 n
+		union all
+		select 2 n
+		union all
+		select 3 n
+		union all
+		select 4 n
+		union all
+		select 5 n
+		union all
+		select 6 n
+		union all
+		select 7 n
+		union all
+		select 8 n
+		union all
+		select 9 n
+	) 
+	select 
+		INT_VAL
+		, CONCAT('NM_', INT_VAL) STR_VAL
+	from (
+		/*select a.n INT_VAL*/
+		select a.n + 10*b.n as INT_VAL
+		/* select a.n + 10*b.n + 100 * c.n + 1000 * d.n  + 10000 * d.n as INT_VAL */
+		from a
+		cross join a as b
+		/*
+		cross join a as c
+		cross join a as d
+		cross join a as e
+		*/
+	) t
+	</select>
 	
 	
 </mapper>

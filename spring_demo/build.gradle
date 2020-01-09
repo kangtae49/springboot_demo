@@ -40,11 +40,12 @@ dependencies {
 	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
 	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16'
 	implementation 'org.ehcache:ehcache:3.8.1'
-	implementation 'javax.cache:cache-api'
+	implementation 'org.apache.poi:poi:4.1.1'
+	implementation 'org.apache.poi:poi-ooxml:4.1.1'
 	
 	
 	compileOnly 'org.projectlombok:lombok'
-	//developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	//runtimeOnly 'mysql:mysql-connector-java'
 	runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
 	//runtimeOnly 'com.oracle.ojdbc:ojdbc8'

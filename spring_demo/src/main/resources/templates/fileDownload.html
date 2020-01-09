@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+ 	  layout:decorator="layout/defaultLayout">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script th:src="@{/resources/js/jquery-3.4.1.min.js}"></script>
+<script th:src="@{/resources/js/jquery.fileDownload.js}"></script>
+<script th:src="@{/resources/js/qs.js}"></script>
+<script th:inline="javascript">
+$(document).ready(function(){
+	$('#excelDownload').on('click', function (){
+		var param = {
+			nm: $('#nm').val(),
+			userNm: 'USER1',
+			val: 1.0,
+		};
+		try{
+			$.fileDownload([[@{/sample/excelDownload}]], {
+				httpMethod: 'POST',
+				data: Qs.stringify(param),
+				successCallback: function (url) {
+					//alert(url);
+				},
+				failCallback: function(responesHtml, url) {
+					//alert('error');
+				}
+			});
+			
+		} catch(e){
+			alert(e);
+		}
+		return false;
+		
+	});
+	
+	
+});
+
+</script>
+</head>
+<th:block layout:fragment="content">
+
+
+<div id="excelDownload" >excelDownload</div>
+
+</th:block>
+</html>
