@@ -18,15 +18,15 @@ import org.springframework.transaction.PlatformTransactionManager;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-//@Configuration
-public class DatabaseConfig {
+@Configuration
+public class DatabaseH2Config {
 	
 	@Autowired
 	private ApplicationContext applicationContext;
 
 
 	@Bean(name="hikariConfig")
-	@ConfigurationProperties(prefix = "spring.datasource.mssql")
+	@ConfigurationProperties(prefix = "spring.datasource.h2")
 	@Primary
 	public HikariConfig hikariConfig() {
 		return new HikariConfig();

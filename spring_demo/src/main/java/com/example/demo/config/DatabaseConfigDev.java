@@ -19,7 +19,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-@Configuration
+//@Configuration
 @MapperScan(basePackages="com.example.demo.sample_dev", sqlSessionFactoryRef="sqlSessionFactoryDev")
 public class DatabaseConfigDev {
 	
